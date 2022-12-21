@@ -8,7 +8,7 @@ class Graph:
             for _ in range(self.count_nodes):
                 adj_list.append([])
 
-    def validate_node(self, u: int):  # Aqui para fazer depois
+    def validate_node(self, u: int):  # Do later
         return -1
 
     def add_directed_edge(self, u: int, v: int):
