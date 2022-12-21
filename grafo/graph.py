@@ -38,3 +38,13 @@ class Graph:
             if u in self.adj_list[n]:
                 aux += 1
         return aux
+    
+    
+    def highest_degree_out(self) -> int:
+        max_degree_out = 0
+        node = 0
+        for i in range(self.count_nodes):
+            if self.degree_out(i) > max_degree_out:
+                max_degree_out = self.degree_out(i)
+                node = i
+        return node
