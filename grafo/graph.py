@@ -13,7 +13,7 @@ class Graph:
             return False
 
     def add_directed_edge(self, u: int, v: int):
-        if validade_node(u) or v < 0 or v > self.count_nodes:
+        if self.validade_node(u) or v < 0 or v > self.count_nodes:
             print(f'Edge ({u}, {v}) could not be added because one of the values is out of the allowed range')
         else:
             self.adj_list[u].append(v)
