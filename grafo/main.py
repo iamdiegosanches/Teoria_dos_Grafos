@@ -11,5 +11,6 @@ print(g1.degree_in(0))
 print(g1.degree_in(1))
 print(g1.degree_in(2))
 
+print(f"Node with the highest degree out: {g1.highest_degree_out()}")
 
 print(g1.adj_list)
