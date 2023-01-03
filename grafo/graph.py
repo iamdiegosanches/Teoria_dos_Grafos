@@ -8,11 +8,12 @@ class Graph:
             for _ in range(self.count_nodes):
                 adj_list.append([])
 
-    def validate_node(self, u: int):  # Do later
-        return -1
+    def validate_node(self, u: int):  # Not yet tested migth be broken
+        if u < 0 or u >= self.count_nodes:
+            return False
 
     def add_directed_edge(self, u: int, v: int):
-        if u < 0 or u >= self.count_nodes or v < 0 or v > self.count_nodes:
+        if validade_node(u) or v < 0 or v > self.count_nodes:
             print(f'Edge ({u}, {v}) could not be added because one of the values is out of the allowed range')
         else:
             self.adj_list[u].append(v)
