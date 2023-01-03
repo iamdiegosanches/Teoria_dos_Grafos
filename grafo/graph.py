@@ -39,7 +39,6 @@ class Graph:
                 aux += 1
         return aux
     
-    
     def highest_degree_out(self) -> int:
         max_degree_out = 0
         node = 0
