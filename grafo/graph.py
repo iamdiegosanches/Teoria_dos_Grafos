@@ -44,14 +44,21 @@ class Graph:
                 aux += 1
         return aux
     
-    def highest_degree_out(self) -> int:
+   def highest_degree_out(self) -> int:
         max_degree_out = 0
-        node = 0
+        highest_degree_node = 0
         for i in range(self.count_nodes):
             if self.degree_out(i) > max_degree_out:
                 max_degree_out = self.degree_out(i)
-                node = i
-        return node
+                highest_degree_node = i
+        return highest_degree_node
 
-    def highest_degree_in(self) -> int:
-        return 0
+   def highest_degree_in(self) -> int:
+        max_degree_in = 0
+        highest_degree_node = 0
+        for i in range(self.count_nodes):
+            degree_in_node_i = self.degree_in(i)
+            if degree_in_node_i > max_degree_in:
+                max_degree_in = degree_in_node_i
+                highest_degree_node = i
+        return highest_degree_node
