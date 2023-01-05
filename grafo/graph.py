@@ -10,10 +10,14 @@ class Graph:
 
     def validate_node(self, u: int):  # Not yet tested migth be broken
         if u < 0 or u >= self.count_nodes:
-            return False
+            return True
+
+    def validate_edge(self, v: int):
+        if v < 0 or v > self.count_nodes:
+            return True
 
     def add_directed_edge(self, u: int, v: int):
-        if self.validade_node(u) or v < 0 or v > self.count_nodes:
+        if self.validate_node(u) or self.validate_edge(v):
             print(f'Edge ({u}, {v}) could not be added because one of the values is out of the allowed range')
         else:
             self.adj_list[u].append(v)
@@ -48,3 +52,6 @@ class Graph:
                 max_degree_out = self.degree_out(i)
                 node = i
         return node
+
+    def highest_degree_in(self) -> int:
+        return 0
