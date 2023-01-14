@@ -62,3 +62,9 @@ class Graph:
                 max_degree_in = degree_in_node_i
                 highest_degree_node = i
         return highest_degree_node
+    
+   def is_complete(self):
+        for i in self.adj_list:
+            if len(i) != len(self.adj_list)-1:
+                return False
+        return True
