@@ -1,5 +1,7 @@
 class Graph:
-    def __init__(self, count_nodes: int = 0, count_edges: int = 0, adj_list: list[list[int]] = []) -> None:
+    def __init__(self, count_nodes: int = 0, count_edges: int = 0, adj_list=None) -> None:
+        if adj_list is None:
+            adj_list = []
         self.count_nodes = count_nodes
         self.count_edges = count_edges
         self.adj_list = adj_list
@@ -43,8 +45,8 @@ class Graph:
             if u in self.adj_list[n]:
                 aux += 1
         return aux
-    
-   def highest_degree_out(self) -> int:
+
+    def highest_degree_out(self) -> int:
         max_degree_out = 0
         highest_degree_node = 0
         for i in range(self.count_nodes):
@@ -53,7 +55,7 @@ class Graph:
                 highest_degree_node = i
         return highest_degree_node
 
-   def highest_degree_in(self) -> int:
+    def highest_degree_in(self) -> int:
         max_degree_in = 0
         highest_degree_node = 0
         for i in range(self.count_nodes):
@@ -62,9 +64,29 @@ class Graph:
                 max_degree_in = degree_in_node_i
                 highest_degree_node = i
         return highest_degree_node
-    
-   def is_complete(self):
-        for i in self.adj_list:
-            if len(i) != len(self.adj_list)-1:
+
+    def is_complete(self):
+        # return self.count_nodes * (self.count_nodes - 1) == self.count_edges (my implementation)
+        return self.density() == 1
+
+    def is_regular(self):
+        for i in range(1, len(self.adj_list)):
+            if self.degree_out(0) != self.degree_out(i):
                 return False
         return True
+
+    def density(self):
+        return self.count_edges / (self.count_nodes * (self.count_nodes - 1))
+
+    def complement(self, g2):
+        for i in range(len(self.adj_list)):
+            for j in range(len(self.adj_list)):
+                if j not in self.adj_list[i] and j != i and j not in g2.adj_list[i]:
+                    g2.add_undirected_edge(i, j)
+        return g2
+
+    def __str__(self):
+        repre = ""
+        for adj in self.adj_list:
+            repre += str(adj) + "\n"
+        return repre
