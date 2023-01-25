@@ -78,12 +78,41 @@ class Graph:
     def density(self):
         return self.count_edges / (self.count_nodes * (self.count_nodes - 1))
 
-    def complement(self, g2):
+    def complement(self):
+        g_aux = Graph(self.count_nodes)
         for i in range(len(self.adj_list)):
             for j in range(len(self.adj_list)):
-                if j not in self.adj_list[i] and j != i and j not in g2.adj_list[i]:
-                    g2.add_undirected_edge(i, j)
-        return g2
+                if j not in self.adj_list[i] and j != i and j not in g_aux.adj_list[i]:
+                    g_aux.add_undirected_edge(i, j)
+        return g_aux
+
+    def subgraph(self, g2):
+        if g2.count_nodes > self.count_nodes or g2.count_edges > self.count_edges:
+            return False
+        for i in range(len(g2.adj_list)):
+            for j in g2.adj_list[i]:
+                if j not in self.adj_list[i]:
+                    return False
+        return True
+
+    def depth_search(self, s):
+        desc = [0 for i in range(len(self.adj_list))]
+        S = [s]
+        R = [s]
+        desc[s] = 1
+        while len(S) != 0:
+            u = S[- 1]
+            pop = True
+            for v in self.adj_list[u]:
+                if desc[v] == 0:
+                    pop = False
+                    S.append(v)
+                    R.append(v)
+                    desc[v] = 1
+                    break
+            if pop:
+                S.pop()
+        return R
 
     def __str__(self):
         repre = ""
