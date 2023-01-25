@@ -16,9 +16,11 @@ print(f"    |DEGREE_OUT(1): {g1.degree_out(1)}")
 print(f"    |DENSITY: {g1.density():.4f}")
 print(f"    |IS_COMPLETE: {g1.is_complete()}")
 print(f"    |IS_REGULAR: {g1.is_regular()}")
+print(f"    |BFS(0): {g1.bfs(0)}")
 print(f"    |DEPTH_SEARCH(0): ", g1.depth_search(0))
 g3 = g1.complement()
 print(f"    |COMPLEMENT: {g3.adj_list}")
+print(f"    |CONNECTEDNESS: {g1.connected()}")
 
 g2 = Graph(3)
 
