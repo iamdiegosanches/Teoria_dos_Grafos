@@ -95,6 +95,20 @@ class Graph:
                     return False
         return True
 
+    def bfs(self, s: int):
+        desc = [0 for i in range(len(self.adj_list))]
+        Q = [s]
+        R = [s]
+        desc[s] = 1
+        while len(Q) != 0:
+            u = Q.pop(0)
+            for v in self.adj_list[u]:
+                if desc[v] == 0:
+                    Q.append(v)
+                    R.append(v)
+                    desc[v] = 1
+        return R
+
     def depth_search(self, s):
         desc = [0 for i in range(len(self.adj_list))]
         S = [s]
@@ -113,6 +127,9 @@ class Graph:
             if pop:
                 S.pop()
         return R
+
+    def connected(self):
+        return len(self.depth_search(0)) == self.count_nodes
 
     def __str__(self):
         repre = ""
