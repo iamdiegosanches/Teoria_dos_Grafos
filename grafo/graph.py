@@ -150,8 +150,9 @@ class Graph:
         pass
 
     def is_closed(self, walk: list[int]):
-        """Returns True iif. walk (passeio) starts and ends at the same node"""
-        pass
+        if walk[0] == walk[-1] and self.is_valid_walk(walk):
+            return True
+        return False
 
     def degree_in_more_than(self, min_degree):
         """Returns the set of nodes that have the in degree larger than max_degree"""
