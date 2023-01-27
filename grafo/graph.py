@@ -139,7 +139,10 @@ class Graph:
         pass
 
     def is_valid_walk(self, walk: list[int]):
-        """Returns True iif. walk (passeio) only uses valid edges to traverse the graph"""
+        for i in range(len(walk) - 1):
+            if walk[i+1] not in self.adj_list[walk[i]]:
+                return False
+        return True
         pass
 
     def is_valid_path(self, path: list[int]):
