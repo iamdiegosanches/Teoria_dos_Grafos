@@ -29,10 +29,6 @@ class Graph:
         self.add_directed_edge(u, v)
         self.add_directed_edge(v, u)
 
-    def add_node(self):
-        self.adj_list.append([])
-        self.count_nodes += 1
-
     def degree_out(self, u: int) -> int:
         if u < 0 or u >= self.count_nodes:
             return -1
@@ -96,7 +92,7 @@ class Graph:
         return True
 
     def bfs(self, s: int):
-        desc = [0 for i in range(len(self.adj_list))]
+        desc = [0 for _ in range(len(self.adj_list))]
         Q = [s]
         R = [s]
         desc[s] = 1
@@ -110,7 +106,7 @@ class Graph:
         return R
 
     def depth_search(self, s):
-        desc = [0 for i in range(len(self.adj_list))]
+        desc = [0 for _ in range(len(self.adj_list))]
         S = [s]
         R = [s]
         desc[s] = 1
@@ -130,13 +126,73 @@ class Graph:
 
     def connected(self):
         return len(self.depth_search(0)) == self.count_nodes
-    
+
     def to_adj_matrix(self):
         adj_mat = [[0 for i in range(len(self.adj_list))] for j in range(len(self.adj_list))]
         for v in range(len(self.adj_list)):
             for e in self.adj_list[v]:
                 adj_mat[v][e] = 1
         return adj_mat
+
+    def is_neighbor(self, u, v):
+        """Returns True if. u and v are neighbors in the graph"""
+        pass
+
+    def is_valid_walk(self, walk: list[int]):
+        """Returns True iif. walk (passeio) only uses valid edges to traverse the graph"""
+        pass
+
+    def is_valid_path(self, path: list[int]):
+        """Returns True iif. path (caminho) is valid (i.e. does not repeat neither edges nor nodes)"""
+        pass
+
+    def is_closed(self, walk: list[int]):
+        """Returns True iif. walk (passeio) starts and ends at the same node"""
+        pass
+
+    def degree_in_more_than(self, min_degree):
+        """Returns the set of nodes that have the in degree larger than max_degree"""
+        pass
+
+    def degree_out_more_than(self, min_degree):
+        """Returns the set of nodes that have the out degree larger than max_degree"""
+        pass
+
+    def nodes_having_in_degree(self, in_degree):
+        """Returns the number of nodes having the given in_degree"""
+        pass
+
+    def nodes_having_out_degree(self, out_degree):
+        """Returns the number of nodes having the given out_degree"""
+        pass
+
+    def diff_min_max_in_degree(self):
+        """Returns the difference between the maximum and minimum in degree"""
+        pass
+
+    def diff_min_max_out_degree(self):
+        """Returns the difference between the maximum and minimum out degree"""
+        pass
+
+    def is_directed(self):
+        """Returns True if graph is directed, and False otherwise"""
+        pass
+
+    def remove_directed_edge(self, u, v):
+        """Removes edge from u to v (and NOT from v to u)"""
+        pass
+
+    def remove_undirected_edge(self, u, v):
+        """Removes both edges from u to v and from v to u"""
+        pass
+
+    def add_node(self):
+        self.adj_list.append([])
+        self.count_nodes += 1
+
+    def remove_node(self, u):
+        """Remove node u (also remove any edge from/to it) - nodes from u+1 and on should be updated accordingly"""
+        pass
 
     def __str__(self):
         repre = ""
