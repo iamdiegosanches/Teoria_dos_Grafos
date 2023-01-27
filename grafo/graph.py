@@ -135,8 +135,7 @@ class Graph:
         return adj_mat
 
     def is_neighbor(self, u, v):
-        """Returns True if. u and v are neighbors in the graph"""
-        pass
+        return v in self.adj_list[u] and u in self.adj_list[v]
 
     def is_valid_walk(self, walk: list[int]):
         for i in range(len(walk) - 1):
