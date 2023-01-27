@@ -130,6 +130,13 @@ class Graph:
 
     def connected(self):
         return len(self.depth_search(0)) == self.count_nodes
+    
+    def to_adj_matrix(self):
+        adj_mat = [[0 for i in range(len(self.adj_list))] for j in range(len(self.adj_list))]
+        for v in range(len(self.adj_list)):
+            for e in self.adj_list[v]:
+                adj_mat[v][e] = 1
+        return adj_mat
 
     def __str__(self):
         repre = ""
