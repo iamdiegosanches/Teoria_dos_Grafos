@@ -143,7 +143,6 @@ class Graph:
             if walk[i+1] not in self.adj_list[walk[i]]:
                 return False
         return True
-        pass
 
     def is_valid_path(self, path: list[int]):
         """Returns True iif. path (caminho) is valid (i.e. does not repeat neither edges nor nodes)"""
