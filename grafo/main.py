@@ -32,6 +32,8 @@ print(f"    |0-1-2-3 IS A VALID PATH: {g1.is_valid_path([0, 1, 2, 3])}")
 print(f"    |REMOVE UNDIRECTED EDGE 2-4:")
 g1.remove_undirected_edge(2, 4)
 print(f"    |NEW GRAPH1: ", g1.adj_list)
+print(f"    |NODES_HAVING_IN_DEGREE(3): {g1.nodes_having_in_degree(3)}): ")
+print(f"    |NODES_HAVING_OUT_DEGREE(3): {g1.nodes_having_out_degree(3)}): ")
 
 
 g2 = Graph(3)
