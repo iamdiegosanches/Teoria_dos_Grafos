@@ -111,7 +111,7 @@ class Graph:
         R = [s]
         desc[s] = 1
         while len(S) != 0:
-            u = S[- 1]
+            u = S[-1]
             pop = True
             for v in self.adj_list[u]:
                 if desc[v] == 0:
@@ -144,8 +144,16 @@ class Graph:
         return True
 
     def is_valid_path(self, path: list[int]):
-        """Returns True iif. path (caminho) is valid (i.e. does not repeat neither edges nor nodes)"""
-        pass
+        """Returns True if. path (caminho) is valid (i.e. does not repeat neither edges nor nodes)"""
+        desc = [0 for _ in range(self.count_nodes)]
+        if self.is_valid_walk(path):
+            for i in path:
+                if desc[i] == 1:
+                    return False
+                desc[i] = 1
+        else:
+            return False
+        return True
 
     def is_closed(self, walk: list[int]):
         if walk[0] == walk[-1] and self.is_valid_walk(walk):
@@ -186,7 +194,12 @@ class Graph:
 
     def remove_undirected_edge(self, u, v):
         """Removes both edges from u to v and from v to u"""
-        pass
+        if self.validate_node(u) and self.validate_node(v):
+            print(f"Could not remove given edges cause nodes are out of range.")
+        else:
+            self.adj_list[u].remove(v)
+            self.adj_list[v].remove(u)
+            self.count_edges -= 2
 
     def add_node(self):
         self.adj_list.append([])
@@ -194,6 +207,7 @@ class Graph:
 
     def remove_node(self, u):
         """Remove node u (also remove any edge from/to it) - nodes from u+1 and on should be updated accordingly"""
+        # Probably do after remove edge functions, Remember to actualize number of nodes
         pass
 
     def __str__(self):
