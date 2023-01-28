@@ -170,11 +170,19 @@ class Graph:
 
     def nodes_having_in_degree(self, in_degree):
         """Returns the number of nodes having the given in_degree"""
-        pass
+        num = 0
+        for i in range(len(self.adj_list)):
+            if self.degree_in(i) == in_degree:
+                num += 1
+        return num
 
     def nodes_having_out_degree(self, out_degree):
         """Returns the number of nodes having the given out_degree"""
-        pass
+        num = 0
+        for i in range(len(self.adj_list)):
+            if self.degree_out(i) == out_degree:
+                num += 1
+        return num
 
     def diff_min_max_in_degree(self):
         """Returns the difference between the maximum and minimum in degree"""
