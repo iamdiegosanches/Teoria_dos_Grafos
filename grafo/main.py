@@ -21,6 +21,18 @@ print(f"    |DEPTH_SEARCH(0): ", g1.depth_search(0))
 g3 = g1.complement()
 print(f"    |COMPLEMENT: {g3.adj_list}")
 print(f"    |CONNECTEDNESS: {g1.connected()}")
+print(f"    |IS_NEIGHBOR(3, 2): {g1.is_neighbor(3, 2)}")
+print(f"    |IS_NEIGHBOR(0, 14): {g1.is_neighbor(0, 14)}")
+print(f"    |IS_NEIGHBOR(0, 2): {g1.is_neighbor(0, 2)}")
+print(f"    |0-1-2-3-0 IS A VALID WALK: {g1.is_valid_walk([0, 1, 2, 3, 0])}")
+print(f"    |0-1-2-3-1 IS A VALID WALK: {g1.is_valid_walk([0, 1, 2, 3, 1])}")
+print(f"    |0-1-2-3-0 IS A CLOSED WALK: {g1.is_closed([0, 1, 2, 3, 0])}")
+print(f"    |0-1-2-3-1 IS A CLOSED WALK: {g1.is_closed([0, 1, 2, 3, 1])}")
+print(f"    |0-1-2-3 IS A VALID PATH: {g1.is_valid_path([0, 1, 2, 3])}")
+print(f"    |REMOVE UNDIRECTED EDGE 2-4:")
+g1.remove_undirected_edge(2, 4)
+print(f"    |NEW GRAPH1: ", g1.adj_list)
+
 
 g2 = Graph(3)
 
