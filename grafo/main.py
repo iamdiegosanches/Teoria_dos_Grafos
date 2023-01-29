@@ -46,6 +46,7 @@ print(f"    |DEGREE_IN_MORE_THAN 1: {g1.degree_in_more_than(1)}")
 print(f"    |REMOVE NODE: 0")
 g1.remove_node(0)
 print(f"    |NEW GRAPH1: ", g1.adj_list)
+print(f"    |IS_DIRECTED: {g1.is_directed()}")
 
 g2 = Graph(3)
 
