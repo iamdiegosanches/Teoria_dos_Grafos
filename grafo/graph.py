@@ -219,7 +219,11 @@ class Graph:
 
     def is_directed(self):
         """Returns True if graph is directed, and False otherwise"""
-        pass
+        for i in range(self.count_nodes - 1):
+            for j in self.adj_list[i]:
+                if not (i in self.adj_list[j]):
+                    return True
+        return False
 
     def remove_directed_edge(self, u, v):
         if self.validate_node(u) and self.validate_node(v):
