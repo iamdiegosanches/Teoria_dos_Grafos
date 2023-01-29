@@ -178,12 +178,20 @@ class Graph:
         return False
 
     def degree_in_more_than(self, min_degree):
-        """Returns the set of nodes that have the in degree larger than max_degree"""
-        pass
+        """Returns the set of nodes that have the in degree larger than min_degree"""
+        set_nodes = []
+        for i in range(len(self.adj_list)):
+            if self.degree_in(i) > min_degree:
+                set_nodes.append(i)
+        return set_nodes
 
     def degree_out_more_than(self, min_degree):
-        """Returns the set of nodes that have the out degree larger than max_degree"""
-        pass
+        """Returns the set of nodes that have the out degree larger than min_degree"""
+        set_nodes = []
+        for i in range(len(self.adj_list)):
+            if self.degree_out(i) > min_degree:
+                set_nodes.append(i)
+        return set_nodes
 
     def nodes_having_in_degree(self, in_degree):
         """Returns the number of nodes having the given in_degree"""
@@ -218,7 +226,7 @@ class Graph:
             print(f"Could not remove given edges cause nodes are out of range.")
         else:
             self.adj_list[u].remove(v)
-            self.count_nodes -= 1
+            self.count_edges -= 1
 
     def remove_undirected_edge(self, u, v):
         if self.validate_node(u) and self.validate_node(v):
@@ -233,9 +241,19 @@ class Graph:
         self.count_nodes += 1
 
     def remove_node(self, u):
-        """Remove node u (also remove any edge from/to it) - nodes from u+1 and on should be updated accordingly"""
-        # Probably do after remove edge functions, Remember to actualize number of nodes
-        pass
+        if self.validate_node(u):
+            print(f"Could not remove given edges cause nodes are out of range.")
+        else:
+            for i in range(len(self.adj_list)):
+                if u in self.adj_list[i]:
+                    self.adj_list[i].remove(u)
+                    self.count_edges -= 2
+
+                for j in range(len(self.adj_list[i])):
+                    if self.adj_list[i][j] > u:
+                        self.adj_list[i][j] -= 1
+        self.adj_list.pop(u)
+        self.count_nodes -= 1
 
     def __str__(self):
         repre = ""
