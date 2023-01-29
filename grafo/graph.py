@@ -61,6 +61,24 @@ class Graph:
                 highest_degree_node = i
         return highest_degree_node
 
+    def lowest_degree_out(self) -> int:
+        min_degree_out = self.degree_out(0)
+        lowest_degree_node = 0
+        for i in range(self.count_nodes):
+            if self.degree_out(i) < min_degree_out:
+                min_degree_out = self.degree_out(i)
+                lowest_degree_node = i
+        return lowest_degree_node
+
+    def lowest_degree_in(self) -> int:
+        min_degree_in = self.degree_in(0)
+        lowest_degree_node = 0
+        for i in range(self.count_nodes):
+            if self.degree_in(i) < min_degree_in:
+                min_degree_in = self.degree_in(i)
+                lowest_degree_node = i
+        return lowest_degree_node
+
     def is_complete(self):
         # return self.count_nodes * (self.count_nodes - 1) == self.count_edges (my implementation)
         return self.density() == 1
@@ -139,12 +157,11 @@ class Graph:
 
     def is_valid_walk(self, walk: list[int]):
         for i in range(len(walk) - 1):
-            if walk[i+1] not in self.adj_list[walk[i]]:
+            if walk[i + 1] not in self.adj_list[walk[i]]:
                 return False
         return True
 
-    def is_valid_path(self, path: list[int]):
-        """Returns True if. path (caminho) is valid (i.e. does not repeat neither edges nor nodes)"""
+    def is_valid_path(self, path: list[int]):  # Caminho
         desc = [0 for _ in range(self.count_nodes)]
         if self.is_valid_walk(path):
             for i in path:
@@ -186,22 +203,24 @@ class Graph:
 
     def diff_min_max_in_degree(self):
         """Returns the difference between the maximum and minimum in degree"""
-        pass
+        return self.degree_in(self.highest_degree_in()) - self.degree_in(self.lowest_degree_in())
 
     def diff_min_max_out_degree(self):
         """Returns the difference between the maximum and minimum out degree"""
-        pass
+        return self.degree_out(self.highest_degree_out()) - self.degree_out(self.lowest_degree_out())
 
     def is_directed(self):
         """Returns True if graph is directed, and False otherwise"""
         pass
 
     def remove_directed_edge(self, u, v):
-        """Removes edge from u to v (and NOT from v to u)"""
-        pass
+        if self.validate_node(u) and self.validate_node(v):
+            print(f"Could not remove given edges cause nodes are out of range.")
+        else:
+            self.adj_list[u].remove(v)
+            self.count_nodes -= 1
 
     def remove_undirected_edge(self, u, v):
-        """Removes both edges from u to v and from v to u"""
         if self.validate_node(u) and self.validate_node(v):
             print(f"Could not remove given edges cause nodes are out of range.")
         else:
