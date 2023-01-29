@@ -11,6 +11,7 @@ g1.add_undirected_edge(2, 6)
 
 print("GRAPH1: ", g1.adj_list)
 print(f"    |HIGHEST_DEGREE_OUT: {g1.highest_degree_out()}")
+print(f"    |LOWEST_DEGREE_OUT: {g1.lowest_degree_out()}")
 print(f"    |DEGREE_OUT(0): {g1.degree_out(0)}")
 print(f"    |DEGREE_OUT(1): {g1.degree_out(1)}")
 print(f"    |DENSITY: {g1.density():.4f}")
@@ -34,7 +35,12 @@ g1.remove_undirected_edge(2, 4)
 print(f"    |NEW GRAPH1: ", g1.adj_list)
 print(f"    |NODES_HAVING_IN_DEGREE(3): {g1.nodes_having_in_degree(3)}): ")
 print(f"    |NODES_HAVING_OUT_DEGREE(3): {g1.nodes_having_out_degree(3)}): ")
-
+print(f"    |GRAPH ADJ LIST TO MAT LIST: ")
+m1 = g1.to_adj_matrix()
+for i in range(len(m1)):
+    print(f"    {m1[i]}")
+print(f"    |DIFF_MIN_MAX_OUT_DEGREE: {g1.diff_min_max_out_degree()}")
+print(f"    |DIFF_MIN_MAX_IN_DEGREE: {g1.diff_min_max_in_degree()}")
 
 g2 = Graph(3)
 
