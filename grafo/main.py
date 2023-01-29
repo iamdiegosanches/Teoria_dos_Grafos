@@ -41,6 +41,11 @@ for i in range(len(m1)):
     print(f"    {m1[i]}")
 print(f"    |DIFF_MIN_MAX_OUT_DEGREE: {g1.diff_min_max_out_degree()}")
 print(f"    |DIFF_MIN_MAX_IN_DEGREE: {g1.diff_min_max_in_degree()}")
+print(f"    |DEGREE_OUT_MORE_THAN 1: {g1.degree_out_more_than(1)}")
+print(f"    |DEGREE_IN_MORE_THAN 1: {g1.degree_in_more_than(1)}")
+print(f"    |REMOVE NODE: 0")
+g1.remove_node(0)
+print(f"    |NEW GRAPH1: ", g1.adj_list)
 
 g2 = Graph(3)
 
