@@ -17,7 +17,7 @@ class Graph:
         self.adj_list[a].append(arg2)
         self.count_edges += 1
 
-        def depth_search(self, start: tuple, end: tuple):
+    def depth_search(self, start: tuple, end: tuple):
         desc = {}
         for i in self.adj_list:
             desc[i] = 0
