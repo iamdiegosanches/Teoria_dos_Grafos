@@ -17,17 +17,20 @@ class Graph:
         self.adj_list[a].append(arg2)
         self.count_edges += 1
 
-    def depth_search(self, s=(1, 0)):
+        def depth_search(self, start: tuple, end: tuple):
         desc = {}
         for i in self.adj_list:
             desc[i] = 0
-        S = [s]
-        R = [s]
-        desc[s] = 1
+        S = [start]
+        R = [start]
+        desc[start] = 1
         while len(S) != 0:
             u = S[-1]
             desempilhar = True
             for v in self.adj_list[u]:
+                if v == end:
+                    R.append(v)
+                    return R
                 if desc[v] == 0:
                     desempilhar = False
                     S.append(v)
@@ -36,4 +39,5 @@ class Graph:
                     break
             if desempilhar:
                 S.pop()
+                R.pop()
         return R
