@@ -141,6 +141,25 @@ class Graph:
             if pop:
                 S.pop()
         return R
+    
+        def depth_search(self, s):
+        desc = [0 for _ in range(len(self.adj_list))]
+        S = [s]
+        R = [s]
+        desc[s] = 1
+        while len(S) != 0:
+            u = S[-1]
+            pop = True
+            for v in self.adj_list[u]:
+                if desc[v] == 0:
+                    pop = False
+                    S.append(v)
+                    R.append(v)
+                    desc[v] = 1
+                    break
+            if pop:
+                S.pop()
+        return R
 
     def connected(self):
         return len(self.depth_search(0)) == self.count_nodes
