@@ -1,4 +1,5 @@
 from graph import Graph
+from weightedGraph import WeightedGraph
 
 g1 = Graph(7)
 
@@ -56,3 +57,26 @@ g2.add_undirected_edge(2, 0)
 
 print("\nGRAPH2: ", g2.adj_list)
 print(f"    |GRAPH 2 IS SUBGRAPH OF 1?: {g1.subgraph(g2)}")
+
+
+# Creating a grapy with brute force, by hand.
+g2 = WeightedGraph(5)
+g2.add_directed_edge(0, 1, 6)  # Origin node, destiny node, weight
+g2.add_directed_edge(0, 2, 2)
+g2.add_directed_edge(1, 2, 3)
+g2.add_directed_edge(1, 3, 1)
+g2.add_directed_edge(1, 4, 3)
+g2.add_directed_edge(2, 1, 2)
+g2.add_directed_edge(2, 3, 5)
+g2.add_directed_edge(3, 4, 3)
+
+# print(g2.adj_list)
+
+# Method for creating a weighted graph reading from a file .txt
+g3 = WeightedGraph(9)
+g3.read_file("toy.txt")
+
+print(g3.bellmand_ford(0))
+
+print(g3.adj_list)
+
