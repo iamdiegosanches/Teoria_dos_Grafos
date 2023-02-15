@@ -51,3 +51,58 @@ class WeightedGraph:
                         dist[v] = dist[u] + w
                         pred[v] = u
         return dist, pred
+    
+        def bellmand_ford_better(self, s):
+        dist = [float("inf") for _ in range(self.count_nodes)]
+        pred = [None for _ in range(self.count_nodes)]
+
+        dist[s] = 0
+        for i in range(self.count_nodes - 1):
+            trocou = False
+            for u in range(self.count_nodes):
+                for (v, w) in self.adj_list[u]:
+                    if dist[v] > dist[u] + w:
+                        dist[v] = dist[u] + w
+                        pred[v] = u
+                        trocou = True
+            if not trocou:
+                break
+        return dist, pred
+
+    def min_dist_Q(self, Q, dist):
+        min_dist = float("inf")
+        min_node = None
+        for n in Q:
+            if dist[n] < min_dist:
+                min_dist = dist[n]
+                min_node = n
+        return min_node
+
+    def djikstra(self, s):
+        dist = [float("inf") for _ in range(self.count_nodes)]
+        pred = [None for _ in range(self.count_nodes)]
+        dist[s] = 0
+        Q = [v for v in range(self.count_nodes)]
+        while len(Q) != 0:
+            u = self.min_dist_Q(Q, dist)
+            Q.remove(u)
+            for v, w in self.adj_list[u]:
+                if dist[v] > dist[u] + w:
+                    dist[v] = dist[u] + w
+                    pred[v] = u
+        return dist, pred
+
+    def djikstra_heap_queue(self, s):
+        dist = [float("inf") for _ in range(self.count_nodes)]
+        pred = [-1 for _ in range(self.count_nodes)]
+        dist[s] = 0
+        pq = []
+        heapq.heappush(pq, [0, s])
+        while len(pq) != 0:
+            [min_dist, u] = heapq.heappop(pq)
+            for (v, w) in self.adj_list[u]:
+                if dist[v] > dist[u] + w:
+                    dist[v] = dist[u] + w
+                    pred[v] = u
+                    heapq.heappush(pq, [dist[v], v])
+        return dist, pred
