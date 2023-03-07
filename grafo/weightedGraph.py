@@ -1,4 +1,5 @@
 from typing import Tuple
+import heapq
 
 
 class WeightedGraph:
@@ -51,12 +52,13 @@ class WeightedGraph:
                         dist[v] = dist[u] + w
                         pred[v] = u
         return dist, pred
-    
-        def bellmand_ford_better(self, s):
+
+    def bellmand_ford_better(self, s):
         dist = [float("inf") for _ in range(self.count_nodes)]
         pred = [None for _ in range(self.count_nodes)]
 
         dist[s] = 0
+
         for i in range(self.count_nodes - 1):
             trocou = False
             for u in range(self.count_nodes):
@@ -92,11 +94,12 @@ class WeightedGraph:
                     pred[v] = u
         return dist, pred
 
-    def djikstra_heap_queue(self, s):
-        dist = [float("inf") for _ in range(self.count_nodes)]
-        pred = [-1 for _ in range(self.count_nodes)]
-        dist[s] = 0
+    def dijkstra_pq(self, s):
+        dist = [float("inf")] * self.count_nodes
+        pred = [-1] * self.count_nodes
         pq = []
+        heapq.heapify(pq)  # Empty priority queue
+        dist[s] = 0
         heapq.heappush(pq, [0, s])
         while len(pq) != 0:
             [min_dist, u] = heapq.heappop(pq)
